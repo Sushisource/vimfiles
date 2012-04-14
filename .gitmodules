@@ -67,6 +67,6 @@
 [submodule "bundle/ruby"]
 	path = bundle/ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
-[submodule "budle/gundo"]
-	path = budle/gundo
+[submodule "bundle/gundo"]
+	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
