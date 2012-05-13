@@ -104,6 +104,8 @@ noremap <F1> <ESC>
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr>
 inoremap jj <ESC>
+" Fix stupid yank inconsistency
+map Y y$
 " CTRL-X and SHIFT-Del are Cut
 vnoremap <C-X> "+x
 vnoremap <S-Del> "+x
