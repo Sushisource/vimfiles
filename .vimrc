@@ -1,5 +1,5 @@
 "Run Pathogen!
-runtime bundle/pathogen/autoload/pathogen.vim
+runtime ~/.vim/bundle/pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 " ---------------------------------------------------
@@ -59,7 +59,6 @@ filetype plugin indent on
 au BufNewFile,BufRead *.cfdg setf cfdg
 "Run buttons
 au FileType python nmap <silent> <F5> :!python %<CR><CR>
-au FileType processing nmap <silent> <F5> :!processing.exe %<CR><CR>
 "Supertab
 set ofu=syntaxcomplete#Complete "By default use syntax files
 let g:SuperTabDefaultCompletionType = "context"
@@ -73,9 +72,9 @@ let g:tagbar_width=24
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=10
 "Set swapfile directory to somewhere nicer
-set directory=%USERPROFILE%\.vim\\
-set backupdir=%USERPROFILE%\.vim\\
-set undodir=%USERPROFILE%\.vim\\
+set directory=~/.vim
+set backupdir=~/.vim
+set undodir=~/.vim
 if has("gui_running") "Big window
     set lines=55 columns=89
 end
@@ -85,11 +84,8 @@ autocmd InsertLeave * :set relativenumber
 "More search range for CPP
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_ShowPrototypeInAbbr = 1
-set tags +=$VIM\vimfiles\tags\qt
+set tags+="~/.vim/vimfiles/tags/qt"
 "Single Compile
-call SingleCompile#SetTemplate('clojure', 'command', 'java')
-call SingleCompile#SetTemplate('clojure', 'flags', '-cp E:/libs/clojure/clojure.jar clojure.main %')
-call SingleCompile#SetTemplate('clojure', 'run', '')
 " Syntastic
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
