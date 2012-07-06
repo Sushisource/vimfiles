@@ -32,7 +32,7 @@ set selectmode=mouse,key
 set wildignore=*.pyc,*.class
 set foldmethod=syntax
 set foldlevel=99
-"Badass tab-completion: 
+"Badass commandline tab-completion: 
 set wildmenu
 set mouse=a
 set window=34
@@ -61,11 +61,38 @@ filetype plugin indent on
 au BufNewFile,BufRead *.cfdg setf cfdg
 "Run buttons
 au FileType python nmap <silent> <F5> :!python %<CR><CR>
-"Supertab
-set ofu=syntaxcomplete#Complete "By default use syntax files
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-set completeopt=longest,menuone 
+"NEOCOMPLCACHE ======================================
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Auto completion is for noobs
+let g:neocomplcache_disable_auto_complete = 1
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+" Use camel case completion.
+let g:neocomplcache_enable_camel_case_completion = 1
+" Use underbar completion.
+let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#cancel_popup()
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><ESC> neocomplcache#cancel_popup()."\<C-\>\<C-n>"
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"NEOCOMPLCACHE ======================================
 "This autohides stupid quickref window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "TagBar settings
@@ -103,7 +130,7 @@ let g:Powerline_symbols='fancy'
 noremap <F1> <ESC>
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr>
-inoremap jj <ESC>
+inoremap jj <C-[>
 " Fix stupid yank inconsistency
 map Y y$
 " CTRL-X and SHIFT-Del are Cut

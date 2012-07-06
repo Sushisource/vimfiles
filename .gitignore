@@ -1,3 +1,5 @@
 sessions/
 doc/tags
+.netrwhist
+*.swp
 %*
