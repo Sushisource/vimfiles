@@ -13,7 +13,9 @@ set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
 set diffexpr=MyDiff()
-set guifont=Consolas:h9:cANSI
+if has('gui_running')
+    set guifont="Menlo"
+endif
 set shortmess=atI
 set helplang=En
 set relativenumber
@@ -93,6 +95,8 @@ let g:syntastic_cpp_check_header=0
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+" Powerline
+let g:Powerline_symbols='fancy'
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
