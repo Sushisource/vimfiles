@@ -1,5 +1,6 @@
 "Run Pathogen!
 runtime ~/.vim/bundle/pathogen/autoload/pathogen.vim
+set runtimepath^=~/.vim/bundle/ctrlp
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 " ---------------------------------------------------
@@ -166,7 +167,7 @@ inoremap <MouseDown> <C-O><C-E>
 let mapleader = ","
 " Some easy file helpers
 nmap <leader>t :tabe<Space>
-nmap <leader>e :CommandT<CR>
+nmap <leader>e :CtrlP<CR>
 nmap <leader>q :wq<CR>
 "Space opens and closes folds
 nmap <Space> za
