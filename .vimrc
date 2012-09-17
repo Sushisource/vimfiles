@@ -94,6 +94,9 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "NEOCOMPLCACHE ======================================
+"CTRLP ==============================================
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+"CTRLP ==============================================
 "This autohides stupid quickref window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "TagBar settings
