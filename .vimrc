@@ -1,7 +1,9 @@
 "Run Pathogen!
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+" Load my other files
+source $VIM/vimfiles/includes/functions.vim
+source $VIM/vimfiles/includes/resizer.vim
 " ---------------------------------------------------
 " SETS
 " ---------------------------------------------------
@@ -13,26 +15,22 @@ set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
 set diffexpr=MyDiff()
-set guifont=Consolas:h9:cANSI
+set guifont=Consolas:h9
 set shortmess=atI
-set helplang=En
 set relativenumber
 set history=200
-set showmatch
-set hlsearch
 set scrolloff=3
-set incsearch
+set incsearch showmatch hlsearch
 set keymodel=startsel,stopsel
 set ruler
 set laststatus=2
 set selection=exclusive
 set selectmode=mouse,key
-set wildignore=*.pyc,*.class
+set wildignore=*.pyc,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
 set foldmethod=syntax
 set foldlevel=99
-"Badass commandline tab-completion: 
 set wildmenu
-set mouse=a
+set mouse=ar
 set window=34
 set undofile
 set encoding=utf-8
@@ -48,7 +46,8 @@ set guioptions-=T " Remove toolbar
 set guioptions-=m " Remove menu
 set guioptions-=e " Remove guitabs
 set guioptions+=c " Use console for simple choices
-set colorcolumn=85
+set colorcolumn=80
+set formatoptions=tcrqwnl1
 " ---------------------------------------------------
 " Further customizations
 " ---------------------------------------------------
@@ -57,8 +56,6 @@ syntax on
 syntax enable
 filetype plugin indent on
 au BufNewFile,BufRead *.cfdg setf cfdg
-"Run buttons
-au FileType python nmap <silent> <F5> :!python %<CR><CR>
 "NEOCOMPLCACHE ======================================
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -82,7 +79,7 @@ inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 inoremap <expr><C-Space> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>"
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplcache#cancel_popup()
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#cancel_popup()."\<C-h>"
 inoremap <expr><ESC> neocomplcache#cancel_popup()."\<C-\>\<C-n>"
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -92,7 +89,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+    let g:neocomplcache_omni_patterns = {}
 endif
 let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 "autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
@@ -104,7 +101,7 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "TagBar settings
 let g:tagbar_width=24
-"Clojure 
+"Clojure
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=10
 "Set swapfile directory to somewhere nicer
@@ -135,7 +132,7 @@ set statusline+=%*
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
-noremap <F1> <ESC>
+noremap <F1> :e $MYVIMRC <CR>
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr>
 inoremap jj <C-[>
@@ -171,6 +168,7 @@ onoremap <C-Tab> <C-C>:tabn<CR>
 inoremap <MouseUp> <C-O><C-Y>
 inoremap <MouseDown> <C-O><C-E>
 " redef leader
+nnoremap \ ,
 let mapleader = ","
 " Some easy file helpers
 nmap <leader>t :tabe<Space>
@@ -179,7 +177,9 @@ nmap <leader>q :wq<CR>
 "Space opens and closes folds
 nmap <Space> za
 " Tagbar is ,b
-nmap <leader>b :TagbarToggle<CR>
+nmap <leader>b :silent :TagbarToggle<CR>
+" Syntastic check with ,c
+nmap <leader>c :SyntasticCheck<CR>
 " Map leader [ ] to buffer switching
 nmap <leader>] :bn<CR>
 nmap <leader>[ :bp<CR>
@@ -188,19 +188,18 @@ nmap <leader>, <C-W>W
 nmap <leader>w :vertical rightb new<CR>
 " NERD Tree
 nmap <leader>f :NERDTreeToggle<CR>
-"Show trailing whitespace 
-"Show trailing whitespace 
+"Show trailing whitespace
 nmap <silent> <leader>s :set nolist!<CR>
+"Delete trailing whitespace
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " clear highlighting
-nmap <silent> <leader>n :silent :noh<CR>
+nmap <silent> <leader>h :silent :call ToggleHLSearch()<CR>
 " rainbow parens
 nmap <silent> <leader>p :RainbowParenthesesToggle<CR>
 ",d is close buffer
 nmap <silent> <leader>d :silent :bd<CR>
 ",l Is buffer list (buffet)
 nmap <silent> <leader>l :Bufferlist<CR>
-" CTRL-F4 is Close tab
-noremap <C-F4> <C-C>:bd
 " CTRL-A selects all
 map <C-A> ggVG
 " Use CTRL-S for saving, also in Insert mode
@@ -214,8 +213,6 @@ inoremap <C-Z> <C-O>u
 vnoremap <BS> d
 " Maps f8 to taglist
 nnoremap <silent> <F8> :TlistToggle<CR>
-" Tab in command mode alternates between brackets
-nnoremap <tab> %
 " Add scroll jumping
 nnoremap J jjjzz
 nnoremap K kkkzz
@@ -227,70 +224,7 @@ vnoremap / /\v
 " Some nice indet shortcuts
 inoremap <C-Right> <C-C>>>i
 inoremap <C-Left> <C-C><<i
-"Ctags generation 
+"Ctags generation
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "Gundo
-map <C-F11> :GundoToggle <CR>
-" ---------------------------------------------------
-" Resizer
-" ---------------------------------------------------
-if has("gui_running")
-  function! ScreenFilename()
-    if has('amiga')
-      return "s:.vimsize"
-    elseif has('win32')
-      return $HOME.'\_vimsize'
-    else
-      return $HOME.'/.vimsize'
-    endif
-  endfunction
-
-  function! ScreenRestore()
-    " Restore window size (columns and lines) and position
-    " from values stored in vimsize file.
-    " Must set font first so columns and lines are based on font size.
-    let f = ScreenFilename()
-    if has("gui_running") && g:screen_size_restore_pos && filereadable(f)
-      let vim_instance = (g:screen_size_by_vim_instance==1?(v:servername):'GVIM')
-      for line in readfile(f)
-        let sizepos = split(line)
-        if len(sizepos) == 5 && sizepos[0] == vim_instance
-          silent! execute "set columns=".sizepos[1]." lines=".sizepos[2]
-          silent! execute "winpos ".sizepos[3]." ".sizepos[4]
-          return
-        endif
-      endfor
-    endif
-  endfunction
-
-  function! ScreenSave()
-    " Save window size and position.
-    if has("gui_running") && g:screen_size_restore_pos
-      let vim_instance = (g:screen_size_by_vim_instance==1?(v:servername):'GVIM')
-      let data = vim_instance . ' ' . &columns . ' ' . &lines . ' ' .
-            \ (getwinposx()<0?0:getwinposx()) . ' ' .
-            \ (getwinposy()<0?0:getwinposy())
-      let f = ScreenFilename()
-      if filereadable(f)
-        let lines = readfile(f)
-        call filter(lines, "v:val !~ '^" . vim_instance . "\\>'")
-        call add(lines, data)
-      else
-        let lines = [data]
-      endif
-      call writefile(lines, f)
-    endif
-  endfunction
-
-  if !exists('g:screen_size_restore_pos')
-    let g:screen_size_restore_pos = 1
-  endif
-  if !exists('g:screen_size_by_vim_instance')
-    let g:screen_size_by_vim_instance = 1
-  endif
-  autocmd VimEnter * if g:screen_size_restore_pos == 1 | call ScreenRestore() | endif
-  autocmd VimLeavePre * if g:screen_size_restore_pos == 1 | call ScreenSave() | endif
-endif
-" ---------------------------------------------------
-" End Resizer
-" ---------------------------------------------------
+map <C-F11> :silent :GundoToggle <CR>
