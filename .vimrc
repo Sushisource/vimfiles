@@ -133,6 +133,7 @@ set statusline+=%*
 " Mappings
 " ---------------------------------------------------
 noremap <F1> :e $MYVIMRC <CR>
+noremap <F5> :silent :!p4 open %<CR>
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr>
 inoremap jj <C-[>
