@@ -129,6 +129,8 @@ let g:syntastic_cpp_check_header=0
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+" Easymotion
+let g:EasyMotion_leader_key = '<Space>'
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
