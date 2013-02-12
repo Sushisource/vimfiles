@@ -19,7 +19,7 @@ set guifont=Consolas:h9
 set shortmess=atI
 set relativenumber
 set history=200
-set scrolloff=3
+set scrolloff=5
 set incsearch showmatch hlsearch
 set keymodel=startsel,stopsel
 set ruler
@@ -231,3 +231,6 @@ inoremap <C-Left> <C-C><<i
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "Gundo
 map <C-F11> :silent :GundoToggle <CR>
+"Make arrow keys move around windows
+nnoremap <left> <C-W><left>
+nnoremap <right> <C-W><right>
