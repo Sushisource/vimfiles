@@ -3,7 +3,6 @@ runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles()
 " Load my other files
 source $VIM/vimfiles/includes/functions.vim
-source $VIM/vimfiles/includes/resizer.vim
 " ---------------------------------------------------
 " SETS
 " ---------------------------------------------------
@@ -14,7 +13,6 @@ set background=dark
 set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
-set diffexpr=MyDiff()
 set guifont=Consolas:h9
 set shortmess=atI
 set relativenumber
@@ -37,11 +35,8 @@ set encoding=utf-8
 set ignorecase
 set smartcase
 set gdefault
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab autoindent smartindent
+set tabstop=4 softtabstop=4 shiftwidth=4
+set smarttab autoindent smartindent expandtab 
 set guioptions-=T " Remove toolbar
 set guioptions-=m " Remove menu
 set guioptions-=e " Remove guitabs
@@ -59,6 +54,7 @@ au BufNewFile,BufRead *.cfdg setf cfdg
 "NEOCOMPLCACHE ======================================
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_auto_select = 0
 " Auto completion is for noobs
 let g:neocomplcache_disable_auto_complete = 1
 " Use neocomplcache.
@@ -72,14 +68,15 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-" Recommended key-mappings.
 " <CR>: close popup and save indent.
 inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
 " Ctrl space completion.
 inoremap <expr><C-Space> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>"
-" <C-h>, <BS>: close popup and delete backword char.
+" Allow accepting results with tab
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" Popup closers
 inoremap <expr><C-h> neocomplcache#cancel_popup()
-inoremap <expr><BS> neocomplcache#cancel_popup()."\<C-h>"
+inoremap <expr><BS> pumvisible() ? neocomplcache#cancel_popup() : "\<C-h>"
 inoremap <expr><ESC> neocomplcache#cancel_popup()."\<C-\>\<C-n>"
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -131,6 +128,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 " Easymotion
 let g:EasyMotion_leader_key = '<Space>'
+" NERDTree
+let g:NERDTreeHijackNetrw = 1
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
@@ -177,15 +176,10 @@ let mapleader = ","
 nmap <leader>t :tabe<Space>
 nmap <leader>e :CommandT<CR>
 nmap <leader>q :wq<CR>
-"Space opens and closes folds
-nmap <Space> za
 " Tagbar is ,b
 nmap <leader>b :silent :TagbarToggle<CR>
 " Syntastic check with ,c
 nmap <leader>c :SyntasticCheck<CR>
-" Map leader [ ] to buffer switching
-nmap <leader>] :bn<CR>
-nmap <leader>[ :bp<CR>
 " Window switching
 nmap <leader>, <C-W>W
 nmap <leader>w :vertical rightb new<CR>
@@ -196,7 +190,7 @@ nmap <silent> <leader>s :set nolist!<CR>
 "Delete trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " clear highlighting
-nmap <silent> <leader>h :silent :call ToggleHLSearch()<CR>
+nmap <silent> <leader>h :noh<CR>
 " rainbow parens
 nmap <silent> <leader>p :RainbowParenthesesToggle<CR>
 ",d is close buffer
@@ -234,3 +228,5 @@ map <C-F11> :silent :GundoToggle <CR>
 "Make arrow keys move around windows
 nnoremap <left> <C-W><left>
 nnoremap <right> <C-W><right>
+"Replace selected text
+vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
