@@ -14,8 +14,7 @@ set background=dark
 set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
-set diffexpr=MyDiff()
-set guifont=Consolas:h9
+set guifont=Consolas\ for\ Powerline\ FixedD:h9
 set shortmess=atI
 set relativenumber
 set history=200
@@ -120,7 +119,7 @@ let OmniCpp_ShowPrototypeInAbbr = 1
 set tags +=$VIM\vimfiles\tags\qt
 "Single Compile
 call SingleCompile#SetTemplate('clojure', 'command', 'java')
-call SingleCompile#SetTemplate('clojure', 'flags', '-cp E:/libs/clojure/clojure.jar clojure.main %')
+call SingleCompile#SetTemplate('clojure', 'flags', '-cp E:\libs\clojure\clojure-1.5.1.jar clojure.main %')
 call SingleCompile#SetTemplate('clojure', 'run', '')
 " Syntastic
 let g:syntastic_enable_signs = 1
@@ -131,6 +130,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 " Easymotion
 let g:EasyMotion_leader_key = '<Space>'
+" Powerline
+let g:Powerline_symbols = 'fancy'
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
@@ -177,12 +178,12 @@ let mapleader = ","
 nmap <leader>t :tabe<Space>
 nmap <leader>e :CommandT<CR>
 nmap <leader>q :wq<CR>
-"Space opens and closes folds
-nmap <Space> za
 " Tagbar is ,b
 nmap <leader>b :silent :TagbarToggle<CR>
 " Syntastic check with ,c
 nmap <leader>c :SyntasticCheck<CR>
+" cd to the directory containing the file in the buffer
+nmap <silent> <leader>cd :lcd %:h<CR>
 " Map leader [ ] to buffer switching
 nmap <leader>] :bn<CR>
 nmap <leader>[ :bp<CR>
