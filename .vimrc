@@ -3,6 +3,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#incubate()
 " Load my other files
 source $VIM/vimfiles/includes/functions.vim
+source $VIM/vimfiles/includes/resizer.vim
 " ---------------------------------------------------
 " SETS
 " ---------------------------------------------------
@@ -105,9 +106,6 @@ let vimclojure#ParenRainbow=10
 set directory=%USERPROFILE%\.vim\\
 set backupdir=%USERPROFILE%\.vim\\
 set undodir=%USERPROFILE%\.vim\\
-if has("gui_running") "Big window
-    set lines=55 columns=89
-end
 "Pop in and out of relative mode
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
