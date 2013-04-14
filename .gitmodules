@@ -79,3 +79,6 @@
 [submodule "bundle/vim-qml"]
 	path = bundle/vim-qml
 	url = git@github.com:peterhoeg/vim-qml.git
+[submodule "bundle/vim-dispatch"]
+	path = bundle/vim-dispatch
+	url = git@github.com:tpope/vim-dispatch.git
