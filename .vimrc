@@ -231,4 +231,4 @@ map <C-F11> :silent :GundoToggle <CR>
 nnoremap <left> <C-W><left>
 nnoremap <right> <C-W><right>
 "Replace selected text
-vnoremap <C-r> <Esc>:%s/<c-r>=GetVisual()<cr>/
+vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
