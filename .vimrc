@@ -130,6 +130,10 @@ let g:EasyMotion_leader_key = '<Space>'
 let g:NERDTreeHijackNetrw = 1
 " Powerline
 let g:Powerline_symbols = 'fancy'
+let g:Powerline_mode_V="V·LINE"
+let g:Powerline_mode_cv="V·BLOCK"
+let g:Powerline_mode_S="S·LINE"
+let g:Powerline_mode_cs="S·BLOCK"
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
