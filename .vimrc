@@ -174,7 +174,7 @@ nnoremap \ ,
 let mapleader = ","
 " Some easy file helpers
 nmap <leader>t :tabe<Space>
-nmap <leader>e :CommandT<CR>
+nmap <leader>e :CtrlP<CR>
 nmap <leader>q :wq<CR>
 " Tagbar is ,b
 nmap <leader>b :silent :TagbarToggle<CR>
