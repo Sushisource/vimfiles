@@ -52,49 +52,6 @@ syntax on
 syntax enable
 filetype plugin indent on
 au BufNewFile,BufRead *.cfdg setf cfdg
-"NEOCOMPLCACHE ======================================
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_auto_select = 0
-" Auto completion is for noobs
-let g:neocomplcache_disable_auto_complete = 1
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" Ctrl space completion.
-inoremap <expr><C-Space> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>"
-" Allow accepting results with tab
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" Popup closers
-inoremap <expr><C-h> neocomplcache#cancel_popup()
-inoremap <expr><BS> pumvisible() ? neocomplcache#cancel_popup() : "\<C-h>"
-inoremap <expr><ESC> neocomplcache#cancel_popup()."\<C-\>\<C-n>"
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-"NEOCOMPLCACHE ======================================
 "This autohides stupid quickref window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "TagBar settings
