@@ -78,19 +78,10 @@ call SingleCompile#SetTemplate('clojure', 'run', '')
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_cpp_check_header=0
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 " Easymotion
 let g:EasyMotion_leader_key = '<Space>'
 " NERDTree
 let g:NERDTreeHijackNetrw = 1
-" Powerline
-let g:Powerline_symbols = 'fancy'
-let g:Powerline_mode_V="V·LINE"
-let g:Powerline_mode_cv="V·BLOCK"
-let g:Powerline_mode_S="S·LINE"
-let g:Powerline_mode_cs="S·BLOCK"
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
@@ -130,7 +121,7 @@ onoremap <C-Tab> <C-C>:tabn<CR>
 " Make mouse scroll not change cursor pos
 inoremap <MouseUp> <C-O><C-Y>
 inoremap <MouseDown> <C-O><C-E>
-" redef leader
+" LEADER =====================================================================
 nnoremap \ ,
 let mapleader = ","
 " Some easy file helpers
@@ -160,6 +151,9 @@ nmap <silent> <leader>p :RainbowParenthesesToggle<CR>
 nmap <silent> <leader>d :silent :bd<CR>
 ",l Is buffer list (buffet)
 nmap <silent> <leader>l :Bufferlist<CR>
+"Show me the marks!
+nmap <silent> <leader>m :marks<CR>
+" LEADER =====================================================================
 " CTRL-A selects all
 map <C-A> ggVG
 " Use CTRL-S for saving, also in Insert mode
