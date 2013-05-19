@@ -112,12 +112,9 @@ exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 imap <S-Insert>	<C-V>
 vmap <S-Insert>	<C-V>
 " Use CTRL-Q to do what CTRL-V used to do
-noremap <C-Q>	<C-V>
+noremap <C-Q> <C-V>
 " CTRL-Tab is Next tab
-noremap  <C-Tab> :tabn<CR>
-inoremap <C-Tab> <C-O>:tabn<CR>
-cnoremap <C-Tab> <C-C>:tabn<CR>
-onoremap <C-Tab> <C-C>:tabn<CR>
+nnoremap  <C-Tab> :tabn<CR>
 " Make mouse scroll not change cursor pos
 inoremap <MouseUp> <C-O><C-Y>
 inoremap <MouseDown> <C-O><C-E>
@@ -153,6 +150,8 @@ nmap <silent> <leader>d :silent :bd<CR>
 nmap <silent> <leader>l :Bufferlist<CR>
 "Show me the marks!
 nmap <silent> <leader>m :marks<CR>
+"Replace selected text
+vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
 " LEADER =====================================================================
 " CTRL-A selects all
 map <C-A> ggVG
@@ -165,8 +164,6 @@ noremap <C-Z> u
 inoremap <C-Z> <C-O>u
 " Backspace deletes stuff in visual mode
 vnoremap <BS> d
-" Maps f8 to taglist
-nnoremap <silent> <F8> :TlistToggle<CR>
 " Add scroll jumping
 nnoremap J jjjzz
 nnoremap K kkkzz
@@ -185,5 +182,3 @@ map <C-F11> :silent :GundoToggle <CR>
 "Make arrow keys move around windows
 nnoremap <left> <C-W><left>
 nnoremap <right> <C-W><right>
-"Replace selected text
-vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
