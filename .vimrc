@@ -152,6 +152,8 @@ nmap <silent> <leader>l :Bufferlist<CR>
 nmap <silent> <leader>m :marks<CR>
 "Replace selected text
 vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
+" Open explorer window at file locaiton
+nmap <silent> <leader>x :Start explorer %:h<CR>
 " LEADER =====================================================================
 " CTRL-A selects all
 map <C-A> ggVG
