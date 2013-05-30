@@ -1,7 +1,6 @@
 "Run Pathogen!
 runtime ~/.vim/bundle/pathogen/autoload/pathogen.vim
-set runtimepath^=~/.vim/bundle/ctrlp
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
 " Load my other files
 source ~/.vim/includes/functions.vim
 source ~/.vim/includes/resizer.vim
@@ -15,14 +14,11 @@ set background=dark
 set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
-set diffexpr=MyDiff()
-if has('gui_running')
-    set guifont="Menlo"
-endif
+set guifont=Consolas:h9
 set shortmess=atI
 set relativenumber
 set history=200
-set scrolloff=3
+set scrolloff=5
 set incsearch showmatch hlsearch
 set keymodel=startsel,stopsel
 set ruler
@@ -40,11 +36,8 @@ set encoding=utf-8
 set ignorecase
 set smartcase
 set gdefault
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab autoindent smartindent
+set tabstop=4 softtabstop=4 shiftwidth=4
+set smarttab autoindent smartindent expandtab 
 set guioptions-=T " Remove toolbar
 set guioptions-=m " Remove menu
 set guioptions-=e " Remove guitabs
@@ -59,47 +52,6 @@ syntax on
 syntax enable
 filetype plugin indent on
 au BufNewFile,BufRead *.cfdg setf cfdg
-"NEOCOMPLCACHE ======================================
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Auto completion is for noobs
-let g:neocomplcache_disable_auto_complete = 1
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" Ctrl space completion.
-inoremap <expr><C-Space> pumvisible() ? "\<C-n>" : "\<C-x>\<C-u>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#cancel_popup()
-inoremap <expr><BS> neocomplcache#cancel_popup()."\<C-h>"
-inoremap <expr><ESC> neocomplcache#cancel_popup()."\<C-\>\<C-n>"
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-"NEOCOMPLCACHE ======================================
 "CTRLP ==============================================
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 "CTRLP ==============================================
@@ -114,9 +66,6 @@ let vimclojure#ParenRainbow=10
 set directory=~/.vim
 set backupdir=~/.vim
 set undodir=~/.vim
-if has("gui_running") "Big window
-    set lines=55 columns=89
-end
 "Pop in and out of relative mode
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
@@ -129,15 +78,15 @@ set tags+="~/.vim/vimfiles/tags/qt"
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_cpp_check_header=0
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-" Powerline
-let g:Powerline_symbols='fancy'
+" Easymotion
+let g:EasyMotion_leader_key = '<Space>'
+" NERDTree
+let g:NERDTreeHijackNetrw = 1
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
 noremap <F1> :e $MYVIMRC <CR>
+noremap <F5> :silent :!p4 open %<CR>
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr>
 inoremap jj <C-[>
@@ -163,31 +112,25 @@ exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 imap <S-Insert>	<C-V>
 vmap <S-Insert>	<C-V>
 " Use CTRL-Q to do what CTRL-V used to do
-noremap <C-Q>	<C-V>
+noremap <C-Q> <C-V>
 " CTRL-Tab is Next tab
-noremap  <C-Tab> :tabn<CR>
-inoremap <C-Tab> <C-O>:tabn<CR>
-cnoremap <C-Tab> <C-C>:tabn<CR>
-onoremap <C-Tab> <C-C>:tabn<CR>
+nnoremap  <C-Tab> :tabn<CR>
 " Make mouse scroll not change cursor pos
 inoremap <MouseUp> <C-O><C-Y>
 inoremap <MouseDown> <C-O><C-E>
-" redef leader
+" LEADER =====================================================================
 nnoremap \ ,
 let mapleader = ","
 " Some easy file helpers
 nmap <leader>t :tabe<Space>
 nmap <leader>e :CtrlP<CR>
 nmap <leader>q :wq<CR>
-"Space opens and closes folds
-nmap <Space> za
 " Tagbar is ,b
 nmap <leader>b :silent :TagbarToggle<CR>
 " Syntastic check with ,c
 nmap <leader>c :SyntasticCheck<CR>
-" Map leader [ ] to buffer switching
-nmap <leader>] :bn<CR>
-nmap <leader>[ :bp<CR>
+" cd to the directory containing the file in the buffer
+nmap <silent> <leader>cd :lcd %:h<CR>
 " Window switching
 nmap <leader>, <C-W>W
 nmap <leader>w :vertical rightb new<CR>
@@ -205,6 +148,13 @@ nmap <silent> <leader>p :RainbowParenthesesToggle<CR>
 nmap <silent> <leader>d :silent :bd<CR>
 ",l Is buffer list (buffet)
 nmap <silent> <leader>l :Bufferlist<CR>
+"Show me the marks!
+nmap <silent> <leader>m :marks<CR>
+"Replace selected text
+vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
+" Open explorer window at file locaiton
+nmap <silent> <leader>x :Start explorer %:h<CR>
+" LEADER =====================================================================
 " CTRL-A selects all
 map <C-A> ggVG
 " Use CTRL-S for saving, also in Insert mode
@@ -216,8 +166,6 @@ noremap <C-Z> u
 inoremap <C-Z> <C-O>u
 " Backspace deletes stuff in visual mode
 vnoremap <BS> d
-" Maps f8 to taglist
-nnoremap <silent> <F8> :TlistToggle<CR>
 " Add scroll jumping
 nnoremap J jjjzz
 nnoremap K kkkzz
@@ -233,3 +181,6 @@ inoremap <C-Left> <C-C><<i
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "Gundo
 map <C-F11> :silent :GundoToggle <CR>
+"Make arrow keys move around windows
+nnoremap <left> <C-W><left>
+nnoremap <right> <C-W><right>
