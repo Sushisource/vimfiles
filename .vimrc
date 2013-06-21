@@ -83,6 +83,8 @@ let g:erlang_show_errors=0 "Vimerl does this wrong. Syntastic handles it fine.
 let g:EasyMotion_leader_key = '<Space>'
 " NERDTree
 let g:NERDTreeHijackNetrw = 1
+" Unite
+let g:unite_winheight = 10
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
@@ -124,7 +126,8 @@ nnoremap \ ,
 let mapleader = ","
 " Some easy file helpers
 nmap <leader>t :tabe<Space>
-nmap <leader>e :CtrlP<CR>
+nmap <leader>e :Unite -start-insert file<CR>
+nmap <leader>E :Unite -start-insert file_rec<CR>
 nmap <leader>q :wq<CR>
 " Tagbar is ,b
 nmap <leader>b :silent :TagbarToggle<CR>
@@ -148,7 +151,7 @@ nmap <silent> <leader>p :RainbowParenthesesToggle<CR>
 ",d is close buffer
 nmap <silent> <leader>d :silent :bd<CR>
 ",l Is buffer list (buffet)
-nmap <silent> <leader>l :Bufferlist<CR>
+nmap <silent> <leader>l :Unite buffer<CR>
 "Show me the marks!
 nmap <silent> <leader>m :marks<CR>
 "Replace selected text

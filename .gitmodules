@@ -31,9 +31,6 @@
 [submodule "bundle/javascript"]
 	path = bundle/javascript
 	url = git://github.com/pangloss/vim-javascript.git
-[submodule "bundle/buffet"]
-	path = bundle/buffet
-	url = git://github.com/sandeepcr529/Buffet.vim.git
 [submodule "bundle/pasta"]
 	path = bundle/pasta
 	url = git://github.com/sickill/vim-pasta.git
@@ -76,12 +73,12 @@
 [submodule "bundle/vim-dispatch"]
 	path = bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "bundle/ctrlp"]
-	path = bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "bundle/youcompleteme"]
 	path = bundle/youcompleteme
 	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule "bundle/vim-elixir"]
 	path = bundle/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "bundle/unite"]
+	path = bundle/unite
+	url = https://github.com/Shougo/unite.vim.git
