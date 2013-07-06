@@ -14,7 +14,7 @@ set background=dark
 set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
-set guifont=Consolas\ for\ Powerline\ FixedD:h9
+set guifont=Consolas:h9
 set shortmess=atI
 set relativenumber
 set history=200
@@ -70,10 +70,6 @@ autocmd InsertLeave * :set relativenumber
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_ShowPrototypeInAbbr = 1
 set tags +=$VIM\vimfiles\tags\qt
-"Single Compile
-call SingleCompile#SetTemplate('clojure', 'command', 'java')
-call SingleCompile#SetTemplate('clojure', 'flags', '-cp E:\libs\clojure\clojure-1.5.1.jar clojure.main %')
-call SingleCompile#SetTemplate('clojure', 'run', '')
 " Syntastic
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
@@ -85,6 +81,8 @@ let g:EasyMotion_leader_key = '<Space>'
 let g:NERDTreeHijackNetrw = 1
 " Unite
 let g:unite_winheight = 10
+" Airline
+let g:airline_theme='simple'
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
