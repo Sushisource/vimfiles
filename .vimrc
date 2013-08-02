@@ -14,7 +14,7 @@ set background=dark
 set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
-set guifont=Consolas\ for\ Powerline\ FixedD:h9
+set guifont=Liberation\ Mono\ 10
 set shortmess=atI
 set relativenumber
 set history=200
