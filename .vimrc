@@ -81,6 +81,8 @@ let g:EasyMotion_leader_key = '<Space>'
 let g:NERDTreeHijackNetrw = 1
 " Unite
 let g:unite_winheight = 10
+" Airline
+let g:airline_theme='simple'
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
