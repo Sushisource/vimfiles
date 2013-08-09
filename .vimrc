@@ -2,8 +2,8 @@
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#incubate()
 " Load my other files
-source $VIM/vimfiles/includes/functions.vim
-source $VIM/vimfiles/includes/resizer.vim
+source ~/.vim/includes/functions.vim
+source ~/.vim/includes/resizer.vim
 " ---------------------------------------------------
 " SETS
 " ---------------------------------------------------
@@ -60,9 +60,9 @@ let g:tagbar_width=24
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=10
 "Set swapfile directory to somewhere nicer
-set directory=%USERPROFILE%\.vim\\
-set backupdir=%USERPROFILE%\.vim\\
-set undodir=%USERPROFILE%\.vim\\
+set directory=$HOME/.vim
+set backupdir=$HOME/.vim
+set undodir=$HOME/.vim
 "Pop in and out of relative mode
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
@@ -70,10 +70,6 @@ autocmd InsertLeave * :set relativenumber
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_ShowPrototypeInAbbr = 1
 set tags +=$VIM\vimfiles\tags\qt
-"Single Compile
-call SingleCompile#SetTemplate('clojure', 'command', 'java')
-call SingleCompile#SetTemplate('clojure', 'flags', '-cp E:\libs\clojure\clojure-1.5.1.jar clojure.main %')
-call SingleCompile#SetTemplate('clojure', 'run', '')
 " Syntastic
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
