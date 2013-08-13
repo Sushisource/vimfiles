@@ -83,7 +83,8 @@ let g:NERDTreeHijackNetrw = 1
 " Unite
 let g:unite_winheight = 10
 " Airline
-let g:airline_theme='simple'
+let g:airline_theme='bubblegum'
+let g:airline_detect_whitespace=0
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
