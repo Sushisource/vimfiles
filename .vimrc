@@ -78,6 +78,7 @@ set tags+="~/.vim/vimfiles/tags/qt"
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_cpp_check_header=0
+let g:syntastic_python_flake8_args='--ignore=C0103'
 let g:erlang_show_errors=0 "Vimerl does this wrong. Syntastic handles it fine.
 " Easymotion
 let g:EasyMotion_leader_key = '<Space>'
@@ -85,6 +86,9 @@ let g:EasyMotion_leader_key = '<Space>'
 let g:NERDTreeHijackNetrw = 1
 " Unite
 let g:unite_winheight = 10
+" Airline
+let g:airline_theme='bubblegum'
+let g:airline_detect_whitespace=0
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------
