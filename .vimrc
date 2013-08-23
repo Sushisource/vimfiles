@@ -66,10 +66,6 @@ set undodir=%USERPROFILE%\.vim\\
 "Pop in and out of relative mode
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
-"More search range for CPP
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_ShowPrototypeInAbbr = 1
-set tags +=$VIM\vimfiles\tags\qt
 " Syntastic
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
@@ -116,8 +112,6 @@ imap <S-Insert>	<C-V>
 vmap <S-Insert>	<C-V>
 " Use CTRL-Q to do what CTRL-V used to do
 noremap <C-Q> <C-V>
-" CTRL-Tab is Next tab
-nnoremap  <C-Tab> :tabn<CR>
 " Make mouse scroll not change cursor pos
 inoremap <MouseUp> <C-O><C-Y>
 inoremap <MouseDown> <C-O><C-E>
@@ -158,6 +152,7 @@ nmap <silent> <leader>m :marks<CR>
 vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
 " Open explorer window at file locaiton
 nmap <silent> <leader>x :Start explorer %:h<CR>
+nmap <silent> <leader>z :Start cmd %:h<CR>
 " LEADER =====================================================================
 " CTRL-A selects all
 map <C-A> ggVG
