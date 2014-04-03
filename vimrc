@@ -2,8 +2,8 @@
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#incubate()
 " Load my other files
-source $VIM/vimfiles/includes/functions.vim
-source $VIM/vimfiles/includes/resizer.vim
+source <sfile>:p:h/includes/functions.vim
+source <sfile>:p:h/includes/resizer.vim
 " ---------------------------------------------------
 " SETS
 " ---------------------------------------------------
