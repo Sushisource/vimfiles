@@ -1,6 +1,6 @@
 "Run Pathogen!
 runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#incubate()
+call pathogen#infect('bundle/{}')
 " Load my other files
 source $VIM/vimfiles/includes/functions.vim
 source $VIM/vimfiles/includes/resizer.vim
@@ -9,6 +9,7 @@ source $VIM/vimfiles/includes/resizer.vim
 " ---------------------------------------------------
 set nocompatible
 set autoread
+set tags=tags;
 set switchbuf=useopen,usetab
 set background=dark
 set backspace=indent,eol,start
@@ -37,13 +38,14 @@ set ignorecase
 set smartcase
 set gdefault
 set tabstop=4 softtabstop=4 shiftwidth=4
-set smarttab autoindent smartindent expandtab 
+set smarttab autoindent smartindent expandtab
 set guioptions-=T " Remove toolbar
 set guioptions-=m " Remove menu
 set guioptions-=e " Remove guitabs
 set guioptions+=c " Use console for simple choices
 set colorcolumn=80
 set formatoptions=tcrqwnl1
+set renderoptions=type:directx,gamma:1.0,contrast:0.2,level:1.0,geom:1,renmode:5,taamode:1
 " ---------------------------------------------------
 " Further customizations
 " ---------------------------------------------------
@@ -51,6 +53,7 @@ colorscheme molokai
 syntax on
 syntax enable
 filetype plugin indent on
+set omnifunc=syntaxcomplete#Complete
 au BufNewFile,BufRead *.cfdg setf cfdg
 "This autohides stupid quickref window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
@@ -75,7 +78,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['python'] }
 let g:erlang_show_errors=0 "Vimerl does this wrong. Syntastic handles it fine.
 " Easymotion
-let g:EasyMotion_leader_key = '<Space>'
+let g:EasyMotion_leader_key = ','
 " NERDTree
 let g:NERDTreeHijackNetrw = 1
 " Unite
@@ -93,33 +96,27 @@ nmap <F10> :SCCompileRun<cr>
 inoremap jj <C-[>
 " Fix stupid yank inconsistency
 map Y y$
-" CTRL-X and SHIFT-Del are Cut
+" CTRL-X and SHIFT-Del are Cut to clipboard
 vnoremap <C-X> "+x
 vnoremap <S-Del> "+x
-" CTRL-C and CTRL-Insert are Copy
+" CTRL-C and CTRL-Insert are Copy to clipboard
 vnoremap <C-C> "+y
 vnoremap <C-Insert> "+y
-" CTRL-V and SHIFT-Insert are Paste
-map <C-V>       "+gp
+" SHIFT-Insert for pasting from clipboard
 map <S-Insert>  "+gP
-cmap <C-V>      <C-R>+
 cmap <S-Insert> <C-R>+
-" Pasting blockwise and linewise selections is not possible in Insert and
-" Visual mode without the +virtualedit feature.  They are pasted as if they
-" were characterwise instead.
-" Uses the paste.vim autoload script.
-exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
-imap <S-Insert>	<C-V>
-vmap <S-Insert>	<C-V>
+exe 'inoremap <script> <S-Insert>' paste#paste_cmd['i']
+exe 'vnoremap <script> <S-Insert>' paste#paste_cmd['v']
 " Use CTRL-Q to do what CTRL-V used to do
 noremap <C-Q> <C-V>
 " Make mouse scroll not change cursor pos
 inoremap <MouseUp> <C-O><C-Y>
 inoremap <MouseDown> <C-O><C-E>
+" Make v in visual mode use the expandregion plugin
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 " LEADER =====================================================================
-nnoremap \ ,
-let mapleader = ","
+let mapleader = "\<Space>"
 " Some easy file helpers
 nmap <leader>t :tabe<Space>
 nmap <leader>e :Unite -start-insert file<CR>
@@ -136,22 +133,20 @@ nmap <leader>, <C-W>W
 nmap <leader>w :vertical rightb new<CR>
 " NERD Tree
 nmap <leader>f :NERDTreeToggle<CR>
-"Show trailing whitespace
+" Show trailing whitespace
 nmap <silent> <leader>s :set nolist!<CR>
-"Delete trailing whitespace
+" Delete trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " clear highlighting
 nmap <silent> <leader>h :silent :call ToggleHLSearch()<CR>
 " rainbow parens
 nmap <silent> <leader>p :RainbowParenthesesToggle<CR>
-",d is close buffer
+" close buffer
 nmap <silent> <leader>d :silent :bd<CR>
-",l Is buffer list (buffet)
+" buffer list
 nmap <silent> <leader>l :Unite buffer<CR>
-"Show me the marks!
+" Show me the marks!
 nmap <silent> <leader>m :marks<CR>
-"Replace selected text
-vnoremap <leader>r <Esc>:%s/<c-r>=GetVisual()<cr>/
 " Open explorer window at file locaiton
 nmap <silent> <leader>x :Start explorer %:h<CR>
 nmap <silent> <leader>z :Start cmd %:h<CR>
