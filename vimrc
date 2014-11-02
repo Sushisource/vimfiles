@@ -1,6 +1,6 @@
 "Run Pathogen!
 runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#incubate()
+call pathogen#infect('bundle/{}')
 " Load my other files
 source <sfile>:p:h/includes/functions.vim
 source <sfile>:p:h/includes/resizer.vim
