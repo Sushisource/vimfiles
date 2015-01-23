@@ -23,6 +23,8 @@ set scrolloff=5
 set incsearch showmatch hlsearch
 set keymodel=startsel,stopsel
 set ruler
+set ttyfast
+set lazyredraw
 set laststatus=2
 set selection=exclusive
 set selectmode=mouse,key
@@ -46,6 +48,9 @@ set guioptions+=c " Use console for simple choices
 set colorcolumn=80
 set formatoptions=tcrqwnl1
 set renderoptions=type:directx,gamma:1.0,contrast:0.2,level:1.0,geom:1,renmode:5,taamode:1
+augroup vimrc
+    autocmd!
+augroup end
 " ---------------------------------------------------
 " Further customizations
 " ---------------------------------------------------
@@ -67,8 +72,8 @@ set directory=%USERPROFILE%\.vim\\
 set backupdir=%USERPROFILE%\.vim\\
 set undodir=%USERPROFILE%\.vim\\
 "Pop in and out of relative mode
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+autocmd vimrc InsertEnter * :set number
+autocmd vimrc InsertLeave * :set relativenumber
 " Syntastic
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
@@ -86,6 +91,24 @@ let g:unite_winheight = 10
 " Airline
 let g:airline_theme='bubblegum'
 let g:airline_detect_whitespace=0
+" Neocomplete
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" Enable omni completion.
+autocmd vimrc FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd vimrc FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd vimrc FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd vimrc FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " ---------------------------------------------------
 " Mappings
 " ---------------------------------------------------

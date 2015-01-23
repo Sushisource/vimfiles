@@ -94,3 +94,6 @@
 [submodule "bundle/expand-region"]
 	path = bundle/expand-region
 	url = https://github.com/terryma/vim-expand-region.git
+[submodule "bundle/neocomplete"]
+	path = bundle/neocomplete
+	url = https://github.com/Shougo/neocomplete.vim.git
