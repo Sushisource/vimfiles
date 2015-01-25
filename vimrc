@@ -45,7 +45,6 @@ set guioptions-=e " Remove guitabs
 set guioptions+=c " Use console for simple choices
 set colorcolumn=80
 set formatoptions=tcrqwnl1
-set renderoptions=type:directx,gamma:1.0,contrast:0.2,level:1.0,geom:1,renmode:5,taamode:1
 " ---------------------------------------------------
 " Further customizations
 " ---------------------------------------------------
