@@ -2,8 +2,14 @@
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect('bundle/{}')
 " Load my other files
-source <sfile>:p:h/includes/functions.vim
-source <sfile>:p:h/includes/resizer.vim
+" currently resolve doesn't work on windows with mklink based symlinks
+if !has("win32")
+    let s:current_file=fnamemodify(resolve(expand('<sfile>:p')), ':h')
+else
+    let s:current_file=expand('<sfile>:p:h') . '/vimfiles'
+endif
+exec 'source '.s:current_file.'/includes/functions.vim'
+exec 'source '.s:current_file.'/includes/resizer.vim'
 " ---------------------------------------------------
 " SETS
 " ---------------------------------------------------

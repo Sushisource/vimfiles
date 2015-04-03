@@ -7,9 +7,6 @@
 [submodule "bundle/rainbowparens"]
 	path = bundle/rainbowparens
 	url = git://github.com/kien/rainbow_parentheses.vim.git
-[submodule "bundle/vimclojure"]
-	path = bundle/vimclojure
-	url = git://github.com/vim-scripts/VimClojure.git
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = git://github.com/majutsushi/tagbar.git
@@ -28,9 +25,6 @@
 [submodule "bundle/processing"]
 	path = bundle/processing
 	url = git://github.com/sophacles/vim-processing.git
-[submodule "bundle/javascript"]
-	path = bundle/javascript
-	url = git://github.com/pangloss/vim-javascript.git
 [submodule "bundle/pasta"]
 	path = bundle/pasta
 	url = git://github.com/sickill/vim-pasta.git
@@ -46,18 +40,9 @@
 [submodule "bundle/repeat"]
 	path = bundle/repeat
 	url = git://github.com/tpope/vim-repeat.git
-[submodule "bundle/ruby"]
-	path = bundle/ruby
-	url = git://github.com/vim-ruby/vim-ruby.git
 [submodule "bundle/gundo"]
 	path = bundle/gundo
 	url = https://github.com/sjl/gundo.vim.git
-[submodule "bundle/vimerl"]
-	path = bundle/vimerl
-	url = https://github.com/jimenezrick/vimerl.git
-[submodule "bundle/vim-markdown"]
-	path = bundle/vim-markdown
-	url = https://github.com/tpope/vim-markdown.git
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = git://github.com/Lokaltog/vim-easymotion.git
@@ -73,15 +58,9 @@
 [submodule "bundle/vim-dispatch"]
 	path = bundle/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "bundle/vim-elixir"]
-	path = bundle/vim-elixir
-	url = https://github.com/elixir-lang/vim-elixir.git
 [submodule "bundle/unite"]
 	path = bundle/unite
 	url = https://github.com/Shougo/unite.vim.git
-[submodule "bundle/vim-coffee-script"]
-	path = bundle/vim-coffee-script
-	url = https://github.com/kchmck/vim-coffee-script.git
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline.git
@@ -97,3 +76,6 @@
 [submodule "bundle/neocomplete"]
 	path = bundle/neocomplete
 	url = https://github.com/Shougo/neocomplete.vim.git
+[submodule "bundle/vim-polyglot"]
+	path = bundle/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot.git
