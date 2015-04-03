@@ -21,7 +21,11 @@ set background=dark
 set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
-set guifont=Consolas:h9
+if has("win32")
+    set guifont=Consolas:h9
+else
+    set guifont=Monaco:h10
+endif
 set shortmess=atI
 set relativenumber
 set history=200
@@ -73,9 +77,15 @@ let g:tagbar_width=24
 let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=10
 "Set swapfile directory to somewhere nicer
-set directory=%USERPROFILE%\.vim\\
-set backupdir=%USERPROFILE%\.vim\\
-set undodir=%USERPROFILE%\.vim\\
+if has("win32")
+    set directory=%USERPROFILE%\.vim\\
+    set backupdir=%USERPROFILE%\.vim\\
+    set undodir=%USERPROFILE%\.vim\\
+else
+    set directory=~/.vim/
+    set backupdir=~/.vim
+    set undodir=~/.vim/
+endif
 "Pop in and out of relative mode
 autocmd vimrc InsertEnter * :set number
 autocmd vimrc InsertLeave * :set relativenumber
