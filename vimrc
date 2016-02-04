@@ -22,6 +22,7 @@ set backspace=indent,eol,start
 set hidden
 set nobackup nowritebackup
 set guifont=Consolas:h9
+set guifontwide=MingLiU:h9
 set shortmess=atI
 set relativenumber
 set history=200
