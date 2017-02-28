@@ -3,5 +3,7 @@ doc/*
 tags/*
 .netrwhist
 *.swp
+.swo
+.swn
 %*
 *.orig
