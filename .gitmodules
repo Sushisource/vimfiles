@@ -85,3 +85,6 @@
 [submodule "bundle/julia-vim"]
 	path = bundle/julia-vim
 	url = https://github.com/JuliaLang/julia-vim.git
+[submodule "bundle/fastfold"]
+	path = bundle/fastfold
+	url = https://github.com/Konfekt/FastFold.git

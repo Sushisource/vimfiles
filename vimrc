@@ -9,7 +9,6 @@ else
     let s:current_file=expand('<sfile>:p:h') . '/vimfiles'
 endif
 exec 'source '.s:current_file.'/includes/functions.vim'
-exec 'source '.s:current_file.'/includes/resizer.vim'
 " ---------------------------------------------------
 " SETS
 " ---------------------------------------------------
@@ -24,8 +23,10 @@ set nobackup nowritebackup
 if has("win32")
     set guifont=Consolas:h9
     set guifontwide=MingLiU:h9
-else
+elseif has("mac")
     set guifont=Monaco:h10
+else
+    set guifont=Consolas
 endif
 set shortmess=atI
 set relativenumber
@@ -51,6 +52,7 @@ set ignorecase
 set smartcase
 set gdefault
 set tabstop=4 softtabstop=4 shiftwidth=4
+au FileType elm setl tabstop=2 softtabstop=2 shiftwidth=2
 set smarttab autoindent smartindent expandtab
 set guioptions-=T " Remove toolbar
 set guioptions-=m " Remove menu
@@ -58,6 +60,8 @@ set guioptions-=e " Remove guitabs
 set guioptions+=c " Use console for simple choices
 set colorcolumn=80
 set formatoptions=tcrqwnl1
+set ssop-=options    " do not store global and local values in a session
+set ssop-=folds      " do not store folds
 augroup vimrc
     autocmd!
 augroup end
@@ -65,6 +69,8 @@ augroup end
 " Further customizations
 " ---------------------------------------------------
 colorscheme molokai
+set t_Co=256
+let g:rehash256=1
 syntax on
 syntax enable
 filetype plugin indent on
