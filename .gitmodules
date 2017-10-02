@@ -88,3 +88,6 @@
 [submodule "bundle/fastfold"]
 	path = bundle/fastfold
 	url = https://github.com/Konfekt/FastFold.git
+[submodule "bundle/vim-markdown"]
+	path = bundle/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
