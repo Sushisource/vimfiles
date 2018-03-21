@@ -85,9 +85,9 @@ let vimclojure#HighlightBuiltins=1
 let vimclojure#ParenRainbow=10
 "Set swapfile directory to somewhere nicer
 if has("win32")
-    set directory=%USERPROFILE%\.vim\\
-    set backupdir=%USERPROFILE%\.vim\\
-    set undodir=%USERPROFILE%\.vim\\
+    set directory=$USERPROFILE\.vim\\
+    set backupdir=$USERPROFILE\.vim\\
+    set undodir=$USERPROFILE\.vim\\
 else
     set directory=~/.vim/
     set backupdir=~/.vim
