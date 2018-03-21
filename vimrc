@@ -1,6 +1,27 @@
-"Run Pathogen!
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect('bundle/{}')
+" Vim plug config
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-commentary'
+Plug 'Shougo/denite.nvim'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'easymotion/vim-easymotion'
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+Plug 'terryma/vim-expand-region'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-obsession'
+Plug 'sickill/vim-pasta'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-syntastic/syntastic'
+Plug 'majutsushi/tagbar', { 'on':  'TagbarToggle' }
+call plug#end()
 " Load my other files
 " currently resolve doesn't work on windows with mklink based symlinks
 if !has("win32")
@@ -80,18 +101,15 @@ au BufNewFile,BufRead *.cfdg setf cfdg
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 "TagBar settings
 let g:tagbar_width=24
-"Clojure
-let vimclojure#HighlightBuiltins=1
-let vimclojure#ParenRainbow=10
 "Set swapfile directory to somewhere nicer
 if has("win32")
     set directory=$USERPROFILE\.vim\\
     set backupdir=$USERPROFILE\.vim\\
     set undodir=$USERPROFILE\.vim\\
 else
-    set directory=~/.vim/
-    set backupdir=~/.vim
-    set undodir=~/.vim/
+    set directory=~/.vim/tmpfiles
+    set backupdir=~/.vim/tmpfiles
+    set undodir=~/.vim/tmpfiles
 endif
 "Pop in and out of relative mode
 autocmd vimrc InsertEnter * :set number
@@ -103,28 +121,17 @@ let g:syntastic_cpp_check_header=0
 let g:syntastic_python_flake8_args='--ignore=C0103'
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['python'] }
-let g:erlang_show_errors=0 "Vimerl does this wrong. Syntastic handles it fine.
-" Easymotion
-let g:EasyMotion_leader_key = ','
 " NERDTree
 let g:NERDTreeHijackNetrw = 1
-" Unite
-let g:unite_winheight = 10
 " Airline
 let g:airline_theme='bubblegum'
 let g:airline_detect_whitespace=0
-" Neocomplete
+" Deoplete
 " Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
+"let g:acp_enableAtStartup = 0
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:deoplete#enable_at_startup = 1
 " Enable omni completion.
 autocmd vimrc FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd vimrc FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -168,9 +175,9 @@ nmap <leader>t :tabe<Space>
 nmap <leader>e :Unite -start-insert file<CR>
 nmap <leader>E :Unite -start-insert file_rec<CR>
 nmap <leader>q :wq<CR>
-" Tagbar is ,b
+" Tagbar
 nmap <leader>b :silent :TagbarToggle<CR>
-" Syntastic check with ,c
+" Syntastic check
 nmap <leader>c :SyntasticCheck<CR>
 " cd to the directory containing the file in the buffer
 nmap <silent> <leader>cd :lcd %:h<CR>
@@ -184,13 +191,12 @@ nmap <silent> <leader>s :set nolist!<CR>
 " Delete trailing whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " clear highlighting
-nmap <silent> <leader>h :silent :call ToggleHLSearch()<CR>
-" rainbow parens
-nmap <silent> <leader>p :RainbowParenthesesToggle<CR>
+nmap <silent> <leader>h :noh<CR>
+" Denite
+nmap <silent> <leader>p :Denite file<CR>
+nmap <silent> <leader>l :Denite buffer<CR>
 " close buffer
 nmap <silent> <leader>d :silent :bd<CR>
-" buffer list
-nmap <silent> <leader>l :Unite buffer<CR>
 " Show me the marks!
 nmap <silent> <leader>m :marks<CR>
 " Open explorer window at file locaiton
