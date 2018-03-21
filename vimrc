@@ -135,6 +135,7 @@ autocmd vimrc FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " Mappings
 " ---------------------------------------------------
 noremap <F1> :e $MYVIMRC <CR>
+noremap <F2> :setlocal spell! spelllang=en_us<CR>
 noremap <F5> :silent :!p4 open %<CR>
 nmap <F9> :SCCompile<cr>
 nmap <F10> :SCCompileRun<cr>
