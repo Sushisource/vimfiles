@@ -6,7 +6,7 @@ call pathogen#infect('bundle/{}')
 if !has("win32")
     let s:current_file=fnamemodify(resolve(expand('<sfile>:p')), ':h')
 else
-    let s:current_file=expand('<sfile>:p:h') . '/vimfiles'
+    let s:current_file=expand('<sfile>:p:h')
 endif
 exec 'source '.s:current_file.'/includes/functions.vim'
 " ---------------------------------------------------
