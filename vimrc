@@ -127,10 +127,8 @@ let g:NERDTreeHijackNetrw = 1
 let g:airline_theme='bubblegum'
 let g:airline_detect_whitespace=0
 " Deoplete
-" Disable AutoComplPop.
-"let g:acp_enableAtStartup = 0
 " <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 let g:deoplete#enable_at_startup = 1
 " Enable omni completion.
 autocmd vimrc FileType css setlocal omnifunc=csscomplete#CompleteCSS
